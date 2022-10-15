@@ -54,8 +54,8 @@ public class BoatService {
                 if(boat.getCategory() != null){
                     bo.get().setCategory(boat.getCategory());
                 }
-                if(boat.getMessage() != null){
-                    bo.get().setMessage(boat.getMessage());
+                if(boat.getMessages() != null){
+                    bo.get().setMessages(boat.getMessages());
                 }
                 if(boat.getReservations() != null){
                     bo.get().setReservations(boat.getReservations());
