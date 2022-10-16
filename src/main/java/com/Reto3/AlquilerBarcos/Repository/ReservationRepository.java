@@ -1,5 +1,6 @@
 package com.Reto3.AlquilerBarcos.Repository;
 
+import com.Reto3.AlquilerBarcos.Conteos.ReportConteoStatus;
 import com.Reto3.AlquilerBarcos.Crud.ReservationCrudRepository;
 import com.Reto3.AlquilerBarcos.modelo.Reservation;
 import java.util.List;
@@ -28,6 +29,13 @@ public class ReservationRepository {
     
     public void delete (Reservation reservation){
         reservationCrudRepository.delete(reservation);
+    }
+    
+     public ReportConteoStatus getReportStatus(){
+        ReportConteoStatus reportConteoStatus = new ReportConteoStatus();
+        reportConteoStatus.setCancelled(reservationCrudRepository.countbystatus("cancelled"));
+        reportConteoStatus.setCompleted(reservationCrudRepository.countbystatus("completed"));
+        return reportConteoStatus;
     }
     
 }

@@ -1,5 +1,6 @@
 package com.Reto3.AlquilerBarcos.Controladores;
 
+import com.Reto3.AlquilerBarcos.Conteos.ReportConteoStatus;
 import com.Reto3.AlquilerBarcos.Services.ReservationService;
 import com.Reto3.AlquilerBarcos.modelo.Reservation;
 import java.util.List;
@@ -54,5 +55,10 @@ public class ReservationController {
     public boolean delete(@PathVariable ("id") int id){
         return reservationService.delete(id);
     }
+    
+    @GetMapping("/report-status")
+    public ReportConteoStatus getReportStatus() {
+        return reservationService.getReportStatus();
+    }   
     
 }

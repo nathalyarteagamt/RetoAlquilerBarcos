@@ -1,5 +1,6 @@
 package com.Reto3.AlquilerBarcos.Services;
 
+import com.Reto3.AlquilerBarcos.Conteos.ReportConteoStatus;
 import com.Reto3.AlquilerBarcos.Repository.ReservationRepository;
 import com.Reto3.AlquilerBarcos.modelo.Reservation;
 import java.util.List;
@@ -74,6 +75,10 @@ public class ReservationService {
             reservationRepository.delete(rs.get());
         }
         return flag;   
+    }
+    
+    public ReportConteoStatus getReportStatus(){
+        return reservationRepository.getReportStatus();
     }
     
 }
