@@ -1,5 +1,6 @@
 package com.Reto3.AlquilerBarcos.Controladores;
 
+import com.Reto3.AlquilerBarcos.Conteos.ReportConteoClienteStatus;
 import com.Reto3.AlquilerBarcos.Conteos.ReportConteoStatus;
 import com.Reto3.AlquilerBarcos.Services.ReservationService;
 import com.Reto3.AlquilerBarcos.modelo.Reservation;
@@ -60,5 +61,18 @@ public class ReservationController {
     public ReportConteoStatus getReportStatus() {
         return reservationService.getReportStatus();
     }   
+    
+    @GetMapping("/report-dates/{dateOne}/{dateTwo}")
+    public List<Reservation> getDatesReport(@PathVariable("dateOne") String d1, @PathVariable("dateTwo") String d2) {
+        return reservationService.getReservationPeriod(d1, d2);
+    }
+    
+
+    @GetMapping("/report-clients")
+    public List<ReportConteoClienteStatus> getCountClient() {
+        return reservationService.getTotalClients();
+    }
+              
+   
     
 }

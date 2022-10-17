@@ -1,8 +1,13 @@
 package com.Reto3.AlquilerBarcos.Services;
 
+import com.Reto3.AlquilerBarcos.Conteos.ReportConteoClienteStatus;
 import com.Reto3.AlquilerBarcos.Conteos.ReportConteoStatus;
 import com.Reto3.AlquilerBarcos.Repository.ReservationRepository;
 import com.Reto3.AlquilerBarcos.modelo.Reservation;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,5 +85,26 @@ public class ReservationService {
     public ReportConteoStatus getReportStatus(){
         return reservationRepository.getReportStatus();
     }
+    
+    public List<Reservation> getReservationPeriod(String dateA, String dateB){
+        SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd"); // 2022-01-21
+        Date a = new Date();
+        Date b = new Date();
+        try{
+            a = parser.parse(dateA);
+            b = parser.parse(dateB);
+        }catch (ParseException exception){
+            exception.printStackTrace();
+        }
+        if(a.before(b)){
+            return reservationRepository.getReservationPeriod(a, b);
+        }else{
+            return new ArrayList<>();
+        }
+    }
+     
+    public List<ReportConteoClienteStatus> getTotalClients(){
+        return reservationRepository.getTopClients();
+    } 
     
 }
